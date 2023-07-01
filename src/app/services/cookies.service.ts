@@ -24,7 +24,7 @@ export class CookiesService {
         const regExp: RegExp = CookiesService.getCookieRegExp(encodeURIComponent('user'));
         const result: RegExpExecArray = regExp.exec(this.document.cookie);
 
-        if (result) {
+        if (result && result[1]) {
             const user = JSON.parse(result[1]);
             this.userService.setUser(user);
             return decodeURIComponent(user);
@@ -38,10 +38,6 @@ export class CookiesService {
     }
 
     delete(): void {
-        if (!this.documentIsAccessible) {
-            return;
-        }
-
-        this.document.cookie = '';
+        this.document.cookie = 'user=';
     }
 }

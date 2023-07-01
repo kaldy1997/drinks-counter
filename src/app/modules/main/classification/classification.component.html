@@ -1,5 +1,23 @@
-<div>
+<div class="classification-module">
     <div class="header">
-        <h1>'HELLO</h1>
+        <h1>Clasificación</h1>
+    </div>
+    <div class="classification">
+        <div *ngIf="!!(users$ | async); else loading" class="list">
+            <div *ngFor="let user of (users$ | async)" class="user-container">
+                <div class="user">
+                    <p>{{user.name}}</p>
+                    <p class="counter">{{user.counter}}</p>
+                </div>
+                <div class="divider"></div>
+            </div>
+        </div>
+        <ng-template #loading>
+            <div class="spinner-container">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
     </div>
 </div>

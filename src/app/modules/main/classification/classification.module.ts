@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { ClassificationRoutingModule } from './classification-routing.module';
@@ -7,6 +8,7 @@ import { ClassificationComponent } from './classification.component';
     ClassificationComponent
   ],
   imports: [
+    CommonModule,
     ClassificationRoutingModule
   ]
 })

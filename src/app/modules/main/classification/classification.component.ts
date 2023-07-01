@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { UserService } from '../../../services/user.service';
+import { Observable } from 'rxjs';
+import { User, UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'classification-root',
@@ -9,10 +9,11 @@ import { UserService } from '../../../services/user.service';
 })
 export class ClassificationComponent {
 
+    public users$: Observable<User[]>;
+
     constructor (
-        private firebase: AngularFirestore,
         public userService: UserService
     ) {
-        this.userService.getData();
+        this.users$ = this.userService.getData();
     }
 }

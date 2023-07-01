@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { map, Observable } from 'rxjs';
 
 export interface User {
     email: string;
@@ -27,17 +28,10 @@ export class UserService {
         this.firebase.collection('users').doc(this.user.id).set({ ...this.user, counter: this.user.counter });
     }
 
-    async getData() {
+    getData(): Observable<User[]> {
         // Elementos en tiempo real
-        this.firebase.collection('users').snapshotChanges().subscribe(response => {
-            response.forEach((element: any) => {
-            })
-        });
-
-        // Elemento única instancia
-        this.firebase.collection('users').get().subscribe(response => {
-            response.forEach((element: any) => {
-            })
-        })
+        return this.firebase.collection('users').snapshotChanges().pipe(
+            map(response => response.map(element => element.payload.doc.data() as User).sort((a, b) => b.counter - a.counter))
+        );
     }
 }

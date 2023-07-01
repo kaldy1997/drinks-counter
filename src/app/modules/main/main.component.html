@@ -1,11 +1,27 @@
 <div class="main">
     <div class="header">
-
+        <button (click)="logout()">LOGOUT</button>
+        <button (click)="toogleModal()">INFO</button>
     </div>
     <div class="body">
         <router-outlet></router-outlet>
     </div>
     <div class="navbar">
+        <a routerLink="/home">Home</a>
+        <a routerLink="/classification">Clasificación</a>
+    </div>
+</div>
 
+
+<div *ngIf="showModal" id="myModal" class="modal" (click)="toogleModal()">
+    <div class="modal-content">
+        <p>
+            Normas del juego:
+        </p>
+        <ul>
+            <li>Cubatas vale 1 punto</li>
+            <li>Chupito vale 0.75 puntos</li>
+            <li>Cerveza vale 0.5 puntos</li>
+        </ul>
     </div>
 </div>
