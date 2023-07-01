@@ -14,6 +14,8 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginComponent {
 
+    showSpinner: boolean;
+
     constructor (
         @Inject(DOCUMENT) private document: any,
         private auth: Auth,
@@ -21,8 +23,7 @@ export class LoginComponent {
         private router: Router,
         private userService: UserService,
         private cookiesService: CookiesService
-    ) {
-    }
+    ) { }
 
     registerUser(id: string, email: string) {
         // Añadir nuevo usuario cuando se logee por primera vez
@@ -31,6 +32,7 @@ export class LoginComponent {
 
     loginWithGoogle() {
         // Login con google
+        this.showSpinner = true;
         signInWithPopup(this.auth, new GoogleAuthProvider()).then(async (responseLogin) => {
 
             const id = responseLogin.user.uid;
@@ -49,6 +51,9 @@ export class LoginComponent {
             }
             this.cookiesService.setUser();
             this.router.navigate(['/home']);
+            this.showSpinner = false;
+        }, error => {
+            this.showSpinner = false;
         });
     }
 

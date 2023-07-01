@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SpinnerModule } from 'src/app/components/spinner/spinner.module';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
@@ -8,7 +10,9 @@ import { LoginComponent } from './login.component';
     LoginComponent
   ],
   imports: [
-    LoginRoutingModule
+    CommonModule,
+    LoginRoutingModule,
+    SpinnerModule
   ],
   providers: []
 })

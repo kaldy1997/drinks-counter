@@ -1,14 +1,14 @@
 <div class="main">
     <div class="header">
-        <button (click)="logout()">LOGOUT</button>
-        <button (click)="toogleModal()">INFO</button>
+        <button class="btn btn-dark" (click)="logout()">LOGOUT</button>
+        <button class="btn btn-dark" (click)="toogleModal()">INFO</button>
     </div>
     <div class="body">
         <router-outlet></router-outlet>
     </div>
     <div class="navbar fixed-bottom">
-        <a routerLink="/home">Home</a>
-        <a routerLink="/classification">Clasificación</a>
+        <a class="btn btn-light" routerLink="/home">Home</a>
+        <a class="btn btn-light" routerLink="/classification">Clasificación</a>
     </div>
 </div>
 
