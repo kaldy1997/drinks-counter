@@ -5,4 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent { }
+export class AppComponent {
+
+    constructor() {
+        window.addEventListener('resize', () => document.documentElement.style.setProperty('--doc-height', `${window.innerHeight}px`));
+    }
+}
