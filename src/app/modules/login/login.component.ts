@@ -40,7 +40,7 @@ export class LoginComponent {
 
             const docSnapshot = await getDoc(doc(getFirestore(), 'users', id));
             const logedUser = docSnapshot.data();
-            this.userService.setUser({
+            this.userService.set({
                 id: id,
                 email: email,
                 name: responseLogin.user.displayName,
@@ -49,7 +49,7 @@ export class LoginComponent {
             if (!logedUser) {
                 this.registerUser(id, email as string)
             }
-            this.cookiesService.setUser();
+            this.cookiesService.set();
             this.router.navigate(['/home']);
             this.showSpinner = false;
         }, error => {

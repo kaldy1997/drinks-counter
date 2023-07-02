@@ -26,14 +26,14 @@ export class CookiesService {
 
         if (result && result[1]) {
             const user = JSON.parse(result[1]);
-            this.userService.setUser(user);
+            this.userService.set(user);
             return decodeURIComponent(user);
         } else {
             return '';
         }
     }
 
-    setUser(): void {
+    set(): void {
         this.document.cookie = `user=${JSON.stringify(this.userService.user)}`;
     }
 

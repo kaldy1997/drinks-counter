@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { CookiesService } from 'src/app/services/cookies.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,21 +10,21 @@ import { UserService } from 'src/app/services/user.service';
 export class HomeComponent {
 
     constructor (
-        private firebase: AngularFirestore,
+        private cookiesService: CookiesService,
         public userService: UserService
-    ) {
-        this.userService.getData();
-    }
+    ) { }
 
 
     increaseValue(value: number): void {
         this.userService.user.counter += value;
         this.userService.updateUser();
+        this.cookiesService.set();
     }
 
     decreaseValue(value: number): void {
         this.userService.user.counter -= value;
         this.userService.updateUser();
+        this.cookiesService.set();
     }
 
 }

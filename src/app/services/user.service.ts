@@ -20,7 +20,7 @@ export class UserService {
         private firebase: AngularFirestore
     ) { }
 
-    setUser(user: User): void {
+    set(user: User): void {
         this.user = user;
     }
 
