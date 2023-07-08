@@ -1,14 +1,14 @@
 <div class="main">
     <div class="header">
-        <button class="btn btn-dark" (click)="logout()">LOGOUT</button>
-        <button class="btn btn-dark" (click)="toogleModal()">INFO</button>
+        <img src="/assets/logout.svg" (click)="logout()" width="32" height="32">
+        <img src="/assets/info-circle.svg" (click)="toogleModal()" width="32" height="32">
     </div>
     <div class="body">
         <router-outlet></router-outlet>
     </div>
     <div class="navbar fixed-bottom">
-        <a class="btn btn-light" routerLink="/home">Home</a>
-        <a class="btn btn-light" routerLink="/classification">Clasificación</a>
+        <img [src]="iconRoutes.home" routerLink="/home" width="32" height="32">
+        <img [src]="iconRoutes.classification" routerLink="/classification" width="32" height="32">
     </div>
 </div>
 

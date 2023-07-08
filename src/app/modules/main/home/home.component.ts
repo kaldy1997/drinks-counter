@@ -9,20 +9,35 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomeComponent {
 
+    private timeoutId: NodeJS.Timeout;
+
     constructor (
         private cookiesService: CookiesService,
         public userService: UserService
     ) { }
 
-
     public increaseValue(value: number): void {
         this.userService.user.counter += value;
-        this.updateValue();
+        this.startTimer();
     }
 
     public decreaseValue(value: number): void {
         this.userService.user.counter -= value;
-        this.updateValue();
+        this.startTimer();
+    }
+
+    private startTimer(): void {
+        const later = () => {
+            if (this.timeoutId) {
+                clearTimeout(this.timeoutId);
+            }
+            this.updateValue();
+        };
+
+        if (this.timeoutId) {
+          clearTimeout(this.timeoutId);
+        }
+        this.timeoutId = setTimeout(later, 3000);
     }
 
     private updateValue(): void {
