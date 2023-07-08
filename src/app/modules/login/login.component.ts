@@ -25,6 +25,7 @@ export class LoginComponent {
         this.showSpinner = true;
         signInWithPopup(this.auth, new GoogleAuthProvider()).then(async (responseLogin) => {
 
+            console.log('Clau is responseLogin', responseLogin);
             const id = responseLogin.user.uid;
             const email = responseLogin.user.email;
             const docSnapshot = await getDoc(doc(getFirestore(), 'users', id));

@@ -1,20 +1,25 @@
 <div class="login-container">
-    <div>
+    <div class="title-container">
         <h1>Contador de bebidas</h1>
-        <h2>Moros y Cristianos 23</h2>
+        <h2>Moros y Cristianos 2023</h2>
+        <div class="icons-container">
+            <img class="image-1" src="/assets/counter.svg" width="128" height="128">
+            <img class="image-2" src="/assets/beer.svg" width="128" height="128">
+        </div>
     </div>
 
     <div>
         <div class="spinner-container">
             <spinner-component *ngIf="showSpinner"></spinner-component>
         </div>
-        <div (click)="loginWithGoogle()" class="d-flex flex-row align-items-center border rounded google-button">
-                <div class="left">
-                    <img width="20px" style="margin-right:8px" alt="Google sign-in"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                </div>
-                <span class="pt-1">Login con Google</span>
-        </div>
 
+        <div class="row" (click)="loginWithGoogle()">
+            <div class="col-md-3">
+                <a class="btn btn-outline-dark"  role="button" style="text-transform:none">
+                    <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Login with Google
+                </a>
+            </div>
+          </div>
     </div>
 </div>
