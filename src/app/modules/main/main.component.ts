@@ -9,19 +9,19 @@ import { CookiesService } from 'src/app/services/cookies.service';
 })
 export class MainComponent {
 
-    showModal: boolean;
+    public showModal: boolean;
 
     constructor(
       private cookiesService: CookiesService,
       private router: Router
     ) { }
 
-    logout() {
+    public logout(): void {
       this.cookiesService.delete();
       this.router.navigate(['/login']);
     }
 
-    toogleModal() {
+    public toogleModal(): void {
         this.showModal = !this.showModal;
     }
 

@@ -15,14 +15,17 @@ export class HomeComponent {
     ) { }
 
 
-    increaseValue(value: number): void {
+    public increaseValue(value: number): void {
         this.userService.user.counter += value;
-        this.userService.updateUser();
-        this.cookiesService.set();
+        this.updateValue();
     }
 
-    decreaseValue(value: number): void {
+    public decreaseValue(value: number): void {
         this.userService.user.counter -= value;
+        this.updateValue();
+    }
+
+    private updateValue(): void {
         this.userService.updateUser();
         this.cookiesService.set();
     }

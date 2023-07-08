@@ -14,6 +14,6 @@ export class ClassificationComponent {
     constructor (
         public userService: UserService
     ) {
-        this.users$ = this.userService.getData();
+        this.users$ = this.userService.getRealTimeData();
     }
 }

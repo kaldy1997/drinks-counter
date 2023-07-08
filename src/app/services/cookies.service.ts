@@ -7,20 +7,12 @@ import { UserService } from './user.service';
 })
 export class CookiesService {
 
-    private readonly documentIsAccessible: boolean;
-
     constructor(
         @Inject(DOCUMENT) private document: any,
         private userService: UserService
     ) { }
 
-    private static getCookieRegExp(name: string): RegExp {
-        const escapedName: string = name.replace(/([\[\]\{\}\(\)\|\=\;\+\?\,\.\*\^\$])/ig, '\\$1');
-
-        return new RegExp(`(?:^${escapedName}|;\\s*${escapedName})=(.*?)(?:;|$)`, 'g');
-    }
-
-    get(): string {
+    public get(): string {
         const regExp: RegExp = CookiesService.getCookieRegExp(encodeURIComponent('user'));
         const result: RegExpExecArray = regExp.exec(this.document.cookie);
 
@@ -33,11 +25,17 @@ export class CookiesService {
         }
     }
 
-    set(): void {
+    public set(): void {
         this.document.cookie = `user=${JSON.stringify(this.userService.user)}`;
     }
 
-    delete(): void {
+    public delete(): void {
         this.document.cookie = 'user=';
+    }
+
+    private static getCookieRegExp(name: string): RegExp {
+        const escapedName: string = name.replace(/([\[\]\{\}\(\)\|\=\;\+\?\,\.\*\^\$])/ig, '\\$1');
+
+        return new RegExp(`(?:^${escapedName}|;\\s*${escapedName})=(.*?)(?:;|$)`, 'g');
     }
 }
