@@ -22,7 +22,11 @@ export class HomeComponent {
     }
 
     public decreaseValue(value: number): void {
-        this.userService.user.counter -= value;
+        if (this.userService.user.counter < value) {
+            this.userService.user.counter = 0;
+        } else {
+            this.userService.user.counter -= value;
+        }
         this.startTimer();
     }
 
