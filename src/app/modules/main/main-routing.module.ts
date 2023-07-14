@@ -13,12 +13,12 @@ const routes: Routes = [
             },
             {
                 path: 'classification',
-                loadChildren: () => import('./classification/classification.module').then(m => m.ClassificationModule)
+                loadChildren: () => import('./classification-main/classification-main.module').then(m => m.ClassificationMainModule)
             },
-            {
-                path: '**',
-                redirectTo: 'home'
-            }
+            // {
+            //     path: '**',
+            //     redirectTo: 'home'
+            // }
         ]
     }
 ];

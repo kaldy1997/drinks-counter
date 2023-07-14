@@ -1,0 +1,30 @@
+<div class="ranking">
+    <div *ngIf="!!users; else loading" class="list">
+        <div *ngFor="let user of users; let i = index" class="user-container">
+            <div class="user" [ngSwitch]="i">
+                <ng-container *ngSwitchCase="0">
+                    <h2>{{user.name}}</h2>
+                    <h2 class="counter">{{user.counter}}</h2>
+                </ng-container>
+                <ng-container *ngSwitchCase="1">
+                    <h3>{{user.name}}</h3>
+                    <h3 class="counter">{{user.counter}}</h3>
+                </ng-container>
+                <ng-container *ngSwitchCase="2">
+                    <h4>{{user.name}}</h4>
+                    <h4 class="counter">{{user.counter}}</h4>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                    <p>{{user.name}}</p>
+                    <p class="counter">{{user.counter}}</p>
+                </ng-container>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+</div>
+<ng-template #loading>
+    <div class="spinner-container">
+        <spinner-component></spinner-component>
+    </div>
+</ng-template>

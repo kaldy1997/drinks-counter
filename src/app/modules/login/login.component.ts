@@ -35,6 +35,7 @@ export class LoginComponent {
                 email,
                 name: responseLogin.user.displayName,
                 counter: logedUser?.counter ?? 0,
+                rooms: logedUser.rooms ?? []
             });
 
             if (!logedUser) {
