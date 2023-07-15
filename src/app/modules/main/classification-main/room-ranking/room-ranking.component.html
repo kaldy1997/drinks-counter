@@ -15,7 +15,7 @@
 
     </div>
     <div class="room-ranking">
-        <div *ngIf="!selectedRoom || selectedRoom === '0'; else ranking">
+        <div class="no-room" *ngIf="!selectedRoom || selectedRoom === '0'; else ranking">
             <h4>Selecciona una sala</h4>
         </div>
         <ng-template #ranking>
