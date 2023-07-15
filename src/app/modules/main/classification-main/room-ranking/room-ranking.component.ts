@@ -46,16 +46,20 @@ export class RoomRankingComponent {
         if (this.valueOfModal.length) {
             if (this.isCreating) {
                 this.selectedRoom = this.userService.createRoom(this.valueOfModal);
-            } else {
+                this.saveOperation();
+            } else if (this.userService.rooms.map(room => room.id).includes(this.valueOfModal)) {
                 this.userService.joinRoom(this.valueOfModal);
                 this.selectedRoom = this.valueOfModal;
+                this.saveOperation();
             }
-
-            setTimeout(() => {
-                this.cookiesService.set();
-                this.onChangeSelector(this.selectedRoom);
-                this.toggleModal();
-            }, 1000);
         }
+    }
+
+    private saveOperation(): void {
+        setTimeout(() => {
+            this.cookiesService.set();
+            this.onChangeSelector(this.selectedRoom);
+            this.toggleModal();
+        }, 1000);
     }
 }
