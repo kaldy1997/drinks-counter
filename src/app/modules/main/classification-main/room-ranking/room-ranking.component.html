@@ -11,7 +11,7 @@
             <option value="0">Seleccione sala</option>
             <option *ngFor="let room of userService.userRooms" [value]="room.id">{{room.name}}</option>
         </select>
-        <h4 *ngIf="!!selectedRoom && selectedRoom !== '0'">{{ 'Código: ' + selectedRoom }}</h4>
+        <h4 class="code" *ngIf="!!selectedRoom && selectedRoom !== '0'">{{ 'Código: ' + selectedRoom }}</h4>
 
     </div>
     <div class="room-ranking">
