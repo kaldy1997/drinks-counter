@@ -32,7 +32,7 @@ export class UserService {
     }
 
     public createRoom(name: string): string {
-        const id = (Number(this.rooms[this.rooms.length - 1].id) + 1).toString();
+        const id = (Number(this.rooms[this.rooms.length - 1]?.id ?? '0') + 1).toString();
         this.firebase.collection('rooms').doc(id).set({ id, name });
         this.user.rooms.push(id);
         this.updateUser();
