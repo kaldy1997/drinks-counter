@@ -1,26 +1,41 @@
 <div class="room-ranking-module">
     <div class="header">
         <h1>Clasificación Social</h1>
-        <select class="form-select" [(ngModel)]="selectValue" aria-label="Seleccione sala" data-width="fit">
+        <select
+            class="form-select"
+            aria-label="Seleccione sala"
+            data-width="fit"
+            [(ngModel)]="selectedRoom"
+            (ngModelChange)="onChangeSelector($event)"
+        >
+            <option value="0">Seleccione sala</option>
             <option *ngFor="let room of userService.userRooms" [value]="room.id">{{room.name}}</option>
         </select>
-        <h4 *ngIf="!!selectValue">{{ 'Código: ' + selectValue }}</h4>
+        <h4 *ngIf="!!selectedRoom && selectedRoom !== '0'">{{ 'Código: ' + selectedRoom }}</h4>
 
     </div>
     <div class="room-ranking">
-        <ranking-component [users]="userService.usersRealTime"></ranking-component>
+        <div *ngIf="!selectedRoom || selectedRoom === '0'; else ranking">
+            <h4>Selecciona una sala</h4>
+        </div>
+        <ng-template #ranking>
+            <ranking-component [users]="userRooms"></ranking-component>
+        </ng-template>
     </div>
 
     <div class="buttons-container">
-        <button class="btn btn-primary" (click)="toggleModal()">Crear sala</button>
-        <button class="btn btn-primary">Unirse a sala</button>
+        <button class="btn btn-primary" (click)="createRoom()">Crear sala</button>
+        <button class="btn btn-primary" (click)="joinRoom()">Unirse a sala</button>
     </div>
 </div>
 
 <modal-component *ngIf="showModal" [(showModal)]="showModal">
-    <div>
-        <p>Introduce el nombre de la sala</p>
-        <button class="btn btn-secondary">Cancelar</button>
-        <button class="btn btn-primary" (click)="saveRoom()">Aceptar</button>
+    <div class="modal-content">
+        <p>{{"Introduzca el " + (isCreating ? "nombre" : "código") + " de la sala"}}</p>
+        <input class="form-input" [(ngModel)]="valueOfModal" />
+        <div class="buttons-container">
+            <button class="btn btn-secondary" (click)="toggleModal()">Cancelar</button>
+            <button class="btn btn-primary" (click)="saveRoom()">Aceptar</button>
+        </div>
     </div>
 </modal-component>

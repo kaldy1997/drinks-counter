@@ -31,11 +31,20 @@ export class UserService {
         this.firebase.collection('users').doc(id).set({ id, email, counter: 0, rooms: [] });
     }
 
-    public createRoom(name: string): void {
-        const id = this.rooms.length.toString();
-        this.firebase.collection('room').doc().set({ id, name });
+    public createRoom(name: string): string {
+        const id = (Number(this.rooms[this.rooms.length - 1].id) + 1).toString();
+        this.firebase.collection('rooms').doc(id).set({ id, name });
         this.user.rooms.push(id);
         this.updateUser();
+        return id;
+    }
+
+    public joinRoom(id: string): void {
+        if (!this.user.rooms.includes(id)) {
+            this.user.rooms.push(id);
+            this.updateUser();
+            this.calculateRoomsOfUser();
+        }
     }
 
     public getRealTimeData(destroyed$: Subject<void>): void {
@@ -49,7 +58,11 @@ export class UserService {
             map(response => response.map(element => element.payload.doc.data() as User).sort((a, b) => Intl.Collator().compare(a.name, b.name)))
         ).subscribe(response => {
             this.rooms = response;
-            this.userRooms = this.rooms.filter(room => this.user.rooms?.includes(room.id));
+            this.calculateRoomsOfUser();
         });
+    }
+
+    public calculateRoomsOfUser(): void {
+        this.userRooms = this.rooms.filter(room => this.user.rooms?.includes(room.id));
     }
 }

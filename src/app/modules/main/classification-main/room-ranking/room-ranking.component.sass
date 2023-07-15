@@ -1,6 +1,34 @@
 .room-ranking-module
+    display: flex
+    flex-direction: column
+    height: 85vh
+    justify-content: space-between
     .header
         padding-top: 25px
         text-align: center
     .room-ranking
         padding: 10px
+        h4
+            text-align: center
+        ranking-component
+            ::ng-deep
+                .ranking
+                    .list
+                        height: 60vh
+    .buttons-container
+        display: flex
+        justify-content: space-evenly
+        gap: 10px
+        button
+            width: 45%
+
+modal-component
+    .modal-content
+        border: 0
+        .buttons-container
+            margin-top: 20px
+            display: flex
+            justify-content: space-evenly
+            gap: 10px
+            button
+                width: 45%
