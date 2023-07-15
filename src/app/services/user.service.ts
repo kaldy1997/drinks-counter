@@ -40,7 +40,7 @@ export class UserService {
     }
 
     public joinRoom(id: string): void {
-        if (!this.user.rooms.includes(id)) {
+        if (!this.user.rooms.includes(id) && this.rooms.map(room => room.id).includes(id)) {
             this.user.rooms.push(id);
             this.updateUser();
             this.calculateRoomsOfUser();
