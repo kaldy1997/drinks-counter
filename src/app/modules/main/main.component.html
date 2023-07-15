@@ -12,9 +12,8 @@
     </div>
 </div>
 
-
-<div *ngIf="showModal" id="myModal" class="modal" (click)="toogleModal()">
-    <div class="modal-content">
+<modal-component [showModal]="showModal" (click)="toogleModal()">
+    <div>
         <p>
             Normas del juego:
         </p>
@@ -24,4 +23,4 @@
             <li>Cerveza vale 0.5 puntos</li>
         </ul>
     </div>
-</div>
+</modal-component>

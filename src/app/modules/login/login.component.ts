@@ -33,8 +33,9 @@ export class LoginComponent {
             this.userService.set({
                 id,
                 email,
-                name: responseLogin.user.displayName,
+                name: responseLogin.user.displayName ?? email,
                 counter: logedUser?.counter ?? 0,
+                rooms: logedUser.rooms ?? []
             });
 
             if (!logedUser) {

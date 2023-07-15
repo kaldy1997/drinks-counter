@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { filter, Subject, takeUntil } from 'rxjs';
 import { CookiesService } from 'src/app/services/cookies.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'main-root',
@@ -20,9 +21,11 @@ export class MainComponent implements OnDestroy {
 
     constructor(
       private cookiesService: CookiesService,
+      private userService: UserService,
       private router: Router
     ) {
       this.checkRoute();
+      this.userService.getRealTimeData(this.destroyed$);
     }
 
     public logout(): void {
